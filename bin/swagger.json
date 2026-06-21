@@ -1,0 +1,87 @@
+{
+  "openapi": "3.2.0",
+  "servers": [{ "url": "http://localhost:3001", "description": "Local Server" }],
+  "info": { "version": "0.0.1", "title": "api-gw", "description": "", "license": { "name": "UNLICENSED" } },
+  "paths": {
+    "/proxy": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "responses": { "200": { "description": "", "content": { "application/json": {} } } },
+        "x-samchon-accessor": ["proxy", "proxyRequest"],
+        "x-samchon-controller": "ProxyController"
+      }
+    },
+    "/quiz-session/start": {
+      "post": {
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/StartQuizSessionDto" } } },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AttemptResponseDto" } } }
+          }
+        },
+        "x-samchon-accessor": ["quiz_session", "start"],
+        "x-samchon-controller": "QuizSessionController"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttemptResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "attemptNumber": { "type": "number" },
+          "userId": { "type": "string" },
+          "quizId": { "type": "number" },
+          "status": { "type": "string" },
+          "score": { "type": "number" },
+          "totalQuestions": { "type": "number" },
+          "createdAt": { "type": "string" },
+          "expiresAt": { "type": "string" },
+          "submittedAt": { "oneOf": [{ "type": "null" }, { "type": "string" }] },
+          "answers": { "type": "array", "items": { "$ref": "#/components/schemas/AttemptAnswerDto" } }
+        },
+        "required": [
+          "id",
+          "attemptNumber",
+          "userId",
+          "quizId",
+          "status",
+          "score",
+          "totalQuestions",
+          "createdAt",
+          "expiresAt",
+          "submittedAt",
+          "answers"
+        ]
+      },
+      "AttemptAnswerDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "number" },
+          "attemptId": { "type": "number" },
+          "questionId": { "type": "number" },
+          "text": { "type": "string" },
+          "options": { "type": "array", "items": { "type": "string" } },
+          "selectedOptionIndex": { "oneOf": [{ "type": "null" }, { "type": "number" }] },
+          "createdAt": { "type": "string" }
+        },
+        "required": ["id", "attemptId", "questionId", "text", "options", "selectedOptionIndex", "createdAt"]
+      },
+      "StartQuizSessionDto": {
+        "type": "object",
+        "properties": { "quizId": { "type": "number" } },
+        "required": ["quizId"]
+      }
+    }
+  },
+  "tags": [],
+  "x-typia-emended-v12": true
+}
