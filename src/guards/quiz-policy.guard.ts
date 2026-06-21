@@ -9,11 +9,11 @@ export class QuizPolicyGuard implements CanActivate {
     const path = request.url
     const method = request.method
 
-    if (path.includes('/proxy/quizz/quizzes/internal')) {
+    if (path.includes('/proxy/quiz/quizzes/internal')) {
       throw new ForbiddenException('You are not authorized')
     }
 
-    if (path.includes('/proxy/quizz/quizzes')) {
+    if (path.includes('/proxy/quiz/quizzes')) {
       const isMutationMethod = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)
 
       if (isMutationMethod) {
