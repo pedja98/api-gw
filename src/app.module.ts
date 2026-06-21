@@ -9,7 +9,7 @@ import { AuthGuard } from './guards/auth.guard'
 import { JwtModule } from '@nestjs/jwt'
 import { QuizPolicyGuard } from './guards/quiz-policy.guard'
 import { QuizSessionModule } from './modules/quiz-session/quiz-session.module'
-import { ResultPolicyGuard } from './guards/result-policy.guardt'
+import { ResultPolicyGuard } from './guards/result-policy.guard'
 
 @Module({
   imports: [

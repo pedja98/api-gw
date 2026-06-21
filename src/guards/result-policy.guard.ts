@@ -12,7 +12,7 @@ export class ResultPolicyGuard implements CanActivate {
       const userRole = request.headers['x-user-role']
 
       if (userRole !== UserRole.USER) {
-        throw new ForbiddenException('You are not authorized to modify entity')
+        throw new ForbiddenException('You are not authorized')
       }
     }
 
