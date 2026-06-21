@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common'
 import { QuizSessionService } from './quiz-session.service'
-import { User } from 'src/decorators/user.decorator'
-import { AuthUser } from 'src/types/auth-user.types'
+import { User } from '../../decorators/user.decorator'
+import { AuthUser } from '../../types/auth-user.types'
 import { StartQuizSessionDto } from './dto/start-quiz-session.dto'
 
 @Controller('quiz-session')

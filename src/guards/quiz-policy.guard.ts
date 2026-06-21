@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, ForbiddenException } from '@nestjs/common'
 import { Request } from 'express'
-import { UserRole } from 'src/enums/user-role.enum'
+import { UserRole } from '../enums/user-role.enum'
 
 @Injectable()
 export class QuizPolicyGuard implements CanActivate {
